@@ -1,0 +1,33 @@
+Terminology
+
+Bower: package manager optimized for front end packages like Bootstrap and JQuery
+
+Why do we need a separate package manager?
+-seperation of powers
+-optimization
+-language independence
+
+Bower is itself a Node module so we can install it easily with npm. It is recommended that we install it globally.
+
+$ npm install bower -g
+
+We can begin using Bower the same way that we begin a project with npm. Bower also uses a manifest file in the top level of the project directory, but this time it must be named bower.json. We can create it using the following command:
+
+$ bower init
+
+install jquery with bower:
+$ bower install jquery --save
+
+When we clone a project that uses npm to manage its dependencies, we run npm install to put the packages on our local machine. We do the same thing to get our Bower dependencies:
+
+$ bower install
+
+install bootstrap with bower:
+$ bower install bootstrap --save
+
+build with prod settings:
+$ gulp build --production
+
+A final note: As you structure your gulpfile, it's also very important to be aware of task dependencies. By default, gulp runs all tasks simultaneously to save time, so you must use dependency arrays to specify if a task must be completed before another one. For example, in our jsBuild task, we know that jsBrowserify and jshint will both be completed before the browser reloads because they are listed in the array of dependencies. But there is no guarantee that jshint will be completed before or after jsBrowserify. If we needed the linter to finish before jsBrowserify was started, it would need to be listed as a dependency of jsBrowserify.
+
+
